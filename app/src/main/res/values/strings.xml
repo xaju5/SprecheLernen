@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">SprecheLernen</string>
     <string name="main_title">SPRECHE LERNEN</string>
+    <string name="verb_button">Verben</string>
+    <string name="name_button">Nomen</string>
+    <string name="adj_button">Adjektiv</string>
+
+    <string name="question_string">Question</string>
+    <string name="answer_string">Answer</string>
+    <string name="attempt_string">0</string>
+    <string name="nextword_button">Pass</string>
+    <string name="back_button">X</string>
+    <string name="check_button">Check</string>
 </resources>
