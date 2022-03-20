@@ -8,33 +8,33 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    String verbenFile, nomenFile, adjFile;
+    String verbenfileName, nomenfileName, adjfileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        verbenFile = new String("verben.csv");
-        nomenFile = new String("nomen.csv");
-        adjFile = new String("adjektiv.csv");
+        verbenfileName = "verben.csv";
+        nomenfileName = "nomen.csv";
+        adjfileName = "adjektiv.csv";
     }
 
     public void goToVerb(View view){
         Intent i = new Intent(MainActivity.this,ExerciseActivity.class);
-        i.putExtra("file", verbenFile);
+        i.putExtra("fileName", verbenfileName);
         startActivity(i);
     }
 
     public void goToNomen(View view){
         Intent i = new Intent(MainActivity.this,ExerciseActivity.class);
-        i.putExtra("file", nomenFile);
+        i.putExtra("fileName", nomenfileName);
         startActivity(i);
     }
 
     public void goToAdj(View view){
         Intent i = new Intent(MainActivity.this,ExerciseActivity.class);
-        i.putExtra("file", adjFile);
+        i.putExtra("fileName", adjfileName);
         startActivity(i);
     }
 
