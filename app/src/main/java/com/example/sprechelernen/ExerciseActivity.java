@@ -13,12 +13,12 @@ import java.util.Random;
 
 public class ExerciseActivity extends AppCompatActivity {
 
-    TextView attemptsTV, questionTV, typeTV;
-    EditText answerET;
-    String rightAnswer, path, fileName;
-    String[] exerWords;
-    List<String[]> allWords;
-    int attemptsNum;
+    private TextView attemptsTV, questionTV, typeTV;
+    private EditText answerET;
+    private String rightAnswer, path, fileName, questionStr, typeStr;
+    private String[] exerWords;
+    private List<String[]> allWords;
+    private int attemptsNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,48 +42,39 @@ public class ExerciseActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        chooseWord();
-        displayWord();
-
+        chooseExerWords();
+        chooseQuestion();
+        updateTextView();
     }
 
-    private  void chooseWord(){
+    private  void chooseExerWords(){
         attemptsNum = 0;
-        int randNum = new Random().nextInt(allWords.size() + 1);
+        int randNum = new Random().nextInt(allWords.size() + 1) + 1;
         exerWords = allWords.get(randNum);
     }
 
-    private void displayWord(){
-        if (fileName == "nomen.csv"){
-            String[] values = {"singular", "plural", "genero", "traducción"};
-            selectQuestion(exerWords.length,values);
-        }
-        if(fileName == "adjektiv.csv"){
-            String[] values = {"aleman", "traducción"};
-            selectQuestion(exerWords.length,values);
-        }
-        if(fileName == "verben.csv"){
-            String[] values = {"infinitivo", "participio", "traducción"};
-            selectQuestion(exerWords.length,values);
-        }
-
-        //TODO asignar valores a los text view
-    }
-
-    private void selectQuestion(int maxNum, String[] values){
+    private void chooseQuestion(){
         int randNum = new Random().nextInt(exerWords.length);
-        String questionStr, answerStr, typeStr;
+
         if(randNum != 0){
             questionStr = exerWords[0];
-            answerStr = exerWords[randNum];
-            typeStr = values[randNum];
+            rightAnswer = exerWords[randNum];
+            typeStr = allWords.get(0)[randNum];
         }
         else{
             int randNum2 = new Random().nextInt(exerWords.length);
             questionStr = exerWords[randNum2];
-            answerStr = exerWords[randNum];
-            typeStr = values[randNum];
+            rightAnswer = exerWords[randNum];
+            typeStr = allWords.get(0)[randNum];
         }
-
     }
+
+    private void updateTextView(){
+        attemptsTV.setText(attemptsNum);
+        questionTV.setText(questionStr);
+        typeTV.setText(typeStr);
+    }
+
+
+
 }
