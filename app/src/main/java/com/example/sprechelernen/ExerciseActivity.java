@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,10 +17,11 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private TextView attemptsTV, questionTV, typeTV;
     private EditText answerET;
-    private String rightAnswer, path, fileName, questionStr, typeStr;
+    private String rightAnswer, fileName, questionStr, typeStr;
     private String[] exerWords;
     private List<String[]> allWords;
     private int attemptsNum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class ExerciseActivity extends AppCompatActivity {
             fileName = extras.getString("fileName");
         }
 
+
         attemptsTV = findViewById(R.id.attemptstextView);
         questionTV = findViewById(R.id.questiontextView);
         typeTV = findViewById(R.id.typeTextView);
@@ -40,6 +44,14 @@ public class ExerciseActivity extends AppCompatActivity {
             allWords = csvReader.readCSV();
         } catch (IOException e){
             e.printStackTrace();
+            Toast toastFileError = Toast.makeText(getApplicationContext(),"File reader error",Toast.LENGTH_SHORT);
+            toastFileError.show();
+
+            //Error array
+            String[] errorStr = {"ERROR","ERROR","ERROR"};
+            allWords = new ArrayList<String[]>();
+            allWords.add(errorStr);
+            allWords.add(errorStr);
         }
 
         chooseExerWords();
@@ -56,16 +68,15 @@ public class ExerciseActivity extends AppCompatActivity {
     private void chooseQuestion(){
         int randNum = new Random().nextInt(exerWords.length);
 
+        rightAnswer = exerWords[randNum];
+        typeStr = allWords.get(0)[randNum];
+
         if(randNum != 0){
             questionStr = exerWords[0];
-            rightAnswer = exerWords[randNum];
-            typeStr = allWords.get(0)[randNum];
         }
         else{
-            int randNum2 = new Random().nextInt(exerWords.length);
+            int randNum2 = new Random().nextInt(exerWords.length - 1) + 1;
             questionStr = exerWords[randNum2];
-            rightAnswer = exerWords[randNum];
-            typeStr = allWords.get(0)[randNum];
         }
     }
 

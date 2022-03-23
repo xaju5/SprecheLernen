@@ -25,7 +25,7 @@ public class CSVReader {
         BufferedReader br = new BufferedReader(isr);
 
         String line;
-        String csvSplitBy = ",";
+        String csvSplitBy = ";";
         String[] row;
 
         while ((line = br.readLine()) != null){

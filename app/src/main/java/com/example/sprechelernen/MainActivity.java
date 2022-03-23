@@ -9,15 +9,16 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     String verbenfileName, nomenfileName, adjfileName;
+    String PATH = "/data/data/com.example.sprechelernen/data/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        verbenfileName = "verben.csv";
-        nomenfileName = "nomen.csv";
-        adjfileName = "adjektiv.csv";
+        verbenfileName = PATH + "verben.csv";
+        nomenfileName = PATH + "nomen.csv";
+        adjfileName = PATH + "adjektiv.csv";
     }
 
     public void goToVerb(View view){
